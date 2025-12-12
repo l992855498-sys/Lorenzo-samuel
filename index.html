@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Five Nights at Gemini's</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+      
+      body {
+        background-color: #000;
+        font-family: 'VT323', monospace;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      /* CRT Scanline Effect */
+      .scanlines {
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.2) 50%,
+          rgba(0, 0, 0, 0.2)
+        );
+        background-size: 100% 4px;
+        position: fixed;
+        pointer-events: none;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 50;
+        animation: scanlineMove 10s linear infinite;
+      }
+      
+      @keyframes scanlineMove {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 100%; }
+      }
+
+      .crt-flicker {
+        animation: flicker 0.15s infinite;
+        opacity: 0.1;
+        pointer-events: none;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: white;
+        z-index: 51;
+        mix-blend-mode: overlay;
+      }
+
+      @keyframes flicker {
+        0% { opacity: 0.05; }
+        50% { opacity: 0.1; }
+        100% { opacity: 0.05; }
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #111; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333; 
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
